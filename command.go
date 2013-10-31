@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	flagCpu = runtime.NumCPU()
+	flagCpu   = runtime.NumCPU()
 	flagQuiet = false
 )
 
@@ -19,11 +19,11 @@ func init() {
 }
 
 type command struct {
-	name string
+	name            string
 	positionalUsage string
-	help string
-	flags *flag.FlagSet
-	run func(*command)
+	help            string
+	flags           *flag.FlagSet
+	run             func(*command)
 }
 
 func (c *command) showUsage() {
