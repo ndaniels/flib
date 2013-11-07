@@ -11,8 +11,8 @@ import (
 
 var (
 	flagCpuProfile = ""
-	flagCpu   = runtime.NumCPU()
-	flagQuiet = false
+	flagCpu        = runtime.NumCPU()
+	flagQuiet      = false
 )
 
 func init() {
