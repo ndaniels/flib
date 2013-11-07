@@ -10,6 +10,7 @@ import (
 )
 
 var (
+	flagCpuProfile = ""
 	flagCpu   = runtime.NumCPU()
 	flagQuiet = false
 )
@@ -53,6 +54,8 @@ func (c *command) showFlags() {
 }
 
 func (c *command) setCommonFlags() {
+	c.flags.StringVar(&flagCpuProfile, "cpu-prof", flagCpuProfile,
+		"When set, a CPU profile will be written to the file path provided.")
 	c.flags.IntVar(&flagCpu, "cpu", flagCpu,
 		"Sets the maximum number of CPUs that can be executing simultaneously.")
 	c.flags.BoolVar(&flagQuiet, "quiet", flagQuiet,

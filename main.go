@@ -4,7 +4,10 @@ import (
 	"log"
 	"os"
 	"runtime"
+	"runtime/pprof"
 	"strings"
+
+	"github.com/TuftsBCB/tools/util"
 )
 
 var commands = []*command{
@@ -41,17 +44,26 @@ func main() {
 	for _, c := range commands {
 		if c.name == cmd {
 			c.setCommonFlags()
-			if flagCpu < 1 {
-				flagCpu = 1
-			}
-			runtime.GOMAXPROCS(flagCpu)
 			if help {
 				c.showHelp()
 			} else {
 				c.flags.Usage = c.showUsage
 				c.flags.Parse(os.Args[2:])
+
+				if flagCpu < 1 {
+					flagCpu = 1
+				}
+				runtime.GOMAXPROCS(flagCpu)
+
+				if len(flagCpuProfile) > 0 {
+					f := util.CreateFile(flagCpuProfile)
+					pprof.StartCPUProfile(f)
+					defer f.Close()
+					defer pprof.StopCPUProfile()
+				}
+
 				c.run(c)
-				os.Exit(0)
+				return
 			}
 		}
 	}
