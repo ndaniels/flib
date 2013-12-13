@@ -7,12 +7,14 @@ import (
 	"os"
 	"runtime"
 	"strings"
+
+	"github.com/TuftsBCB/tools/util"
 )
 
 var (
 	flagCpuProfile = ""
 	flagCpu        = runtime.NumCPU()
-	flagQuiet      = false
+	flagOverwrite  = false
 )
 
 func init() {
@@ -22,8 +24,10 @@ func init() {
 type command struct {
 	name            string
 	positionalUsage string
+	shortHelp       string
 	help            string
 	flags           *flag.FlagSet
+	addFlags        func(*command)
 	run             func(*command)
 }
 
@@ -36,6 +40,7 @@ func (c *command) showUsage() {
 func (c *command) showHelp() {
 	log.Printf("Usage: flib %s [flags] %s\n\n", c.name, c.positionalUsage)
 	log.Println(strings.TrimSpace(c.help))
+	log.Printf("\nThe flags are:\n\n")
 	c.showFlags()
 	log.Println("")
 	os.Exit(1)
@@ -58,9 +63,14 @@ func (c *command) setCommonFlags() {
 		"When set, a CPU profile will be written to the file path provided.")
 	c.flags.IntVar(&flagCpu, "cpu", flagCpu,
 		"Sets the maximum number of CPUs that can be executing simultaneously.")
-	c.flags.BoolVar(&flagQuiet, "quiet", flagQuiet,
+	c.flags.BoolVar(&util.FlagQuiet, "quiet", util.FlagQuiet,
 		"When set, progress information and other status messages will\n"+
 			"not be printed to stderr.")
+}
+
+func (c *command) setOverwriteFlag() {
+	c.flags.BoolVar(&flagOverwrite, "overwrite", flagOverwrite,
+		"When set, the output file will be overwritten if it already exists.")
 }
 
 func (c *command) assertNArg(n int) {

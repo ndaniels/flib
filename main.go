@@ -1,26 +1,37 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"runtime"
 	"runtime/pprof"
 	"strings"
+	"text/tabwriter"
 
 	"github.com/TuftsBCB/tools/util"
 )
 
 var commands = []*command{
+	cmdMkSeqHMM,
+	cmdMkSeqProfile,
+	cmdMkStructure,
+	cmdMkWeighted,
 	cmdPairdist,
+	cmdViewLib,
 }
 
 func usage() {
-	log.Println("Usage: flib {command} [flags] [arguments]\n")
+	log.Println("flib is a tool for creating and using fragment libraries.\n")
+	log.Println("Usage:\n\n    flib {command} [flags] [arguments]\n")
 	log.Println("Use 'flib help {command}' for more details on {command}.\n")
 	log.Println("A list of all available commands:\n")
+
+	tabw := tabwriter.NewWriter(os.Stderr, 0, 0, 4, ' ', 0)
 	for _, c := range commands {
-		log.Printf("    flib %s [flags] %s\n", c.name, c.positionalUsage)
+		fmt.Fprintf(tabw, "    %s\t%s\n", c.name, c.shortHelp)
 	}
+	tabw.Flush()
 	log.Println("")
 	os.Exit(1)
 }
@@ -44,6 +55,9 @@ func main() {
 	for _, c := range commands {
 		if c.name == cmd {
 			c.setCommonFlags()
+			if c.addFlags != nil {
+				c.addFlags(c)
+			}
 			if help {
 				c.showHelp()
 			} else {
