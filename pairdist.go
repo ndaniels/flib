@@ -11,7 +11,7 @@ import (
 var cmdPairdist = &command{
 	name:            "pairdist",
 	positionalUsage: "frag-lib bower-file [ bower-file ... ]",
-	shortHelp: "compute pairwise BOW distances",
+	shortHelp:       "compute pairwise BOW distances",
 	help: `
 The pairdist command returns the cosine distance between every pair of
 Fragbag frequency vectors produced by the given bower files.

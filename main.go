@@ -13,11 +13,13 @@ import (
 )
 
 var commands = []*command{
+	cmdMkBowDb,
 	cmdMkSeqHMM,
 	cmdMkSeqProfile,
 	cmdMkStructure,
 	cmdMkWeighted,
 	cmdPairdist,
+	cmdSearch,
 	cmdViewLib,
 }
 

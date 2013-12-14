@@ -17,13 +17,13 @@ import (
 var cmdMkStructure = &command{
 	name:            "mk-structure",
 	positionalUsage: "kolodny-brk-file out-frag-lib",
-	shortHelp: "create a new structure fragment library",
+	shortHelp:       "create a new structure fragment library",
 	help: `
 The mk-structure command generates a structure fragment library from a brk
 file produced by Rachel Kolodny's fragment library software. (???)
 `,
-	flags: flag.NewFlagSet("mk-structure", flag.ExitOnError),
-	run:   mkStructure,
+	flags:    flag.NewFlagSet("mk-structure", flag.ExitOnError),
+	run:      mkStructure,
 	addFlags: func(c *command) { c.setOverwriteFlag() },
 }
 

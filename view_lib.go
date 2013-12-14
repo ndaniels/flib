@@ -12,7 +12,7 @@ import (
 var cmdViewLib = &command{
 	name:            "view-lib",
 	positionalUsage: "frag-lib",
-	shortHelp: "view information about a fragment library",
+	shortHelp:       "view information about a fragment library",
 	help: `
 View information (size, fragment size, type, etc.) about a fragment library.
 The information shown is fairly straight-forward. Although, note that the tag

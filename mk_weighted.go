@@ -39,7 +39,8 @@ fragment frequencies from its corresponding structure fragment library,
 you could use this command (with the PDB Select 25 acting as the
 representative of the document space):
 
-    pdbs-chains pdb25-file | xargs flib weighted structure.json sequence.json sequence-weighted.json
+    pdbs-chains pdb25-file
+	  | xargs flib weighted structure.json sequence.json sequence-weighted.json
 `,
 	flags: flag.NewFlagSet("mk-weighted", flag.ExitOnError),
 	run:   mkWeighted,
@@ -64,12 +65,15 @@ func mkWeighted(c *command) {
 	// library.
 	numFrags := in.Size()
 	idfs := make([]float32, numFrags)
+	for i := range idfs {
+		idfs[i] = 1 // pseudocount
+	}
 
 	// Compute the BOWs for each bower against the training fragment lib.
 	bows := util.ProcessBowers(bowPaths, train, flagCpu, util.FlagQuiet)
 
 	// Now tally the number of bowers that each fragment occurred in.
-	totalBows := float32(0)
+	totalBows := float32(1) // for pseudocount correction
 	for bow := range bows {
 		totalBows += 1
 		for fragi := 0; fragi < numFrags; fragi++ {
