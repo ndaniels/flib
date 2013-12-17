@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math"
 
+	"github.com/TuftsBCB/fragbag/bow"
 	"github.com/TuftsBCB/tools/util"
 )
 
@@ -27,7 +28,7 @@ func pairdist(c *command) {
 	flib := util.Library(c.flags.Arg(0))
 	bowPaths := c.flags.Args()[1:]
 
-	bows := make([]util.Bowered, 0, 1000)
+	bows := make([]bow.Bowed, 0, 1000)
 	results := util.ProcessBowers(bowPaths, flib, flagCpu, util.FlagQuiet)
 	for r := range results {
 		bows = append(bows, r)

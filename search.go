@@ -8,6 +8,7 @@ import (
 	"sync"
 	"text/tabwriter"
 
+	"github.com/TuftsBCB/fragbag/bow"
 	"github.com/TuftsBCB/fragbag/bowdb"
 	"github.com/TuftsBCB/tools/util"
 )
@@ -69,7 +70,7 @@ func search(c *command) {
 		util.Fatalf("Unknown sort field '%s'.", flagSearchSort)
 	}
 
-	db := util.OpenBOWDB(c.flags.Arg(0))
+	db := util.OpenBowDB(c.flags.Arg(0))
 	bowPaths := c.flags.Args()[1:]
 
 	_, err := db.ReadAll()
@@ -86,14 +87,9 @@ func search(c *command) {
 		go func() {
 			defer wgSearch.Done()
 
-			for bow := range bows {
-				query := bowdb.Entry{
-					Id:   bow.Id,
-					Data: bow.Data,
-					BOW:  bow.Bow,
-				}
-				sr := db.SearchEntry(flagSearchOpts, query)
-				out <- searchResult{query, sr}
+			for b := range bows {
+				sr := db.Search(flagSearchOpts, b)
+				out <- searchResult{b, sr}
 			}
 		}()
 	}
@@ -105,7 +101,7 @@ func search(c *command) {
 }
 
 type searchResult struct {
-	query   bowdb.Entry
+	query   bow.Bowed
 	results []bowdb.SearchResult
 }
 
@@ -149,7 +145,7 @@ func outputPlain(sr searchResult, first bool) {
 	fmt.Println(strings.Repeat("-", len(header)))
 	wf("Hit\tCosine\tEuclid\n")
 	for _, result := range sr.results {
-		wf("%s\t%0.4f\t%0.4f\n", result.Entry.Id, result.Cosine, result.Euclid)
+		wf("%s\t%0.4f\t%0.4f\n", result.Bowed.Id, result.Cosine, result.Euclid)
 	}
 	w.Flush()
 }
@@ -157,6 +153,6 @@ func outputPlain(sr searchResult, first bool) {
 func outputCsv(sr searchResult, first bool) {
 	for _, result := range sr.results {
 		fmt.Printf("%s\t%s\t%0.4f\t%0.4f\n",
-			sr.query.Id, result.Entry.Id, result.Cosine, result.Euclid)
+			sr.query.Id, result.Bowed.Id, result.Cosine, result.Euclid)
 	}
 }

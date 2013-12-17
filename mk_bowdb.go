@@ -35,16 +35,12 @@ func mkBowDb(c *command) {
 
 	util.AssertOverwritable(dbPath, flagOverwrite)
 
-	db, err := bowdb.CreateDB(flib, dbPath)
+	db, err := bowdb.Create(flib, dbPath)
 	util.Assert(err)
 
 	bows := util.ProcessBowers(bowPaths, flib, flagCpu, util.FlagQuiet)
-	for bow := range bows {
-		db.AddEntry(bowdb.Entry{
-			Id:   bow.Id,
-			Data: bow.Data,
-			BOW:  bow.Bow,
-		})
+	for b := range bows {
+		db.Add(b)
 	}
 	util.Assert(db.Close())
 }
