@@ -63,9 +63,9 @@ func search(c *command) {
 	}
 	switch flagSearchSort {
 	case "cosine":
-		flagSearchOpts.SortBy = bowdb.Cosine
+		flagSearchOpts.SortBy = bowdb.SortByCosine
 	case "euclid":
-		flagSearchOpts.SortBy = bowdb.Euclid
+		flagSearchOpts.SortBy = bowdb.SortByEuclid
 	default:
 		util.Fatalf("Unknown sort field '%s'.", flagSearchSort)
 	}
