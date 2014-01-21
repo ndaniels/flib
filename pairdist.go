@@ -9,6 +9,8 @@ import (
 	"github.com/TuftsBCB/tools/util"
 )
 
+var flagPairdistModels = false
+
 var cmdPairdist = &command{
 	name:            "pairdist",
 	positionalUsage: "frag-lib bower-file [ bower-file ... ]",
@@ -21,6 +23,12 @@ Bower files may either be PDB files or FASTA files.
 `,
 	flags: flag.NewFlagSet("pairdist", flag.ExitOnError),
 	run:   pairdist,
+	addFlags: func(c *command) {
+		c.flags.BoolVar(&flagPairdistModels, "models", flagPairdistModels,
+			"When set, the models for each bower file given (if a PDB file)\n"+
+				"will be used. Otherwise, the first the model from each\n"+
+				"chain specified will be used.")
+	},
 }
 
 func pairdist(c *command) {
@@ -29,7 +37,8 @@ func pairdist(c *command) {
 	bowPaths := c.flags.Args()[1:]
 
 	bows := make([]bow.Bowed, 0, 1000)
-	results := util.ProcessBowers(bowPaths, flib, flagCpu, util.FlagQuiet)
+	results := util.ProcessBowers(bowPaths, flib, flagPairdistModels,
+		flagCpu, util.FlagQuiet)
 	for r := range results {
 		bows = append(bows, r)
 	}

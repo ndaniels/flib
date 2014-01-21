@@ -70,7 +70,7 @@ func mkWeighted(c *command) {
 	}
 
 	// Compute the BOWs for each bower against the training fragment lib.
-	bows := util.ProcessBowers(bowPaths, train, flagCpu, util.FlagQuiet)
+	bows := util.ProcessBowers(bowPaths, train, false, flagCpu, util.FlagQuiet)
 
 	// Now tally the number of bowers that each fragment occurred in.
 	totalBows := float32(1) // for pseudocount correction

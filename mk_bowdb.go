@@ -38,7 +38,7 @@ func mkBowDb(c *command) {
 	db, err := bowdb.Create(flib, dbPath)
 	util.Assert(err)
 
-	bows := util.ProcessBowers(bowPaths, flib, flagCpu, util.FlagQuiet)
+	bows := util.ProcessBowers(bowPaths, flib, false, flagCpu, util.FlagQuiet)
 	for b := range bows {
 		db.Add(b)
 	}

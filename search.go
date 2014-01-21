@@ -77,7 +77,7 @@ func search(c *command) {
 	util.Assert(err, "Could not read BOW database entries")
 
 	// always hide the progress bar here.
-	bows := util.ProcessBowers(bowPaths, db.Lib, flagCpu, true)
+	bows := util.ProcessBowers(bowPaths, db.Lib, false, flagCpu, true)
 	out, outDone := outputter()
 
 	// launch goroutines to search queries in parallel
