@@ -20,6 +20,7 @@ var commands = []*command{
 	cmdMkWeighted,
 	cmdPairdist,
 	cmdSearch,
+	cmdVectors,
 	cmdViewLib,
 }
 
