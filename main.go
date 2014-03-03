@@ -14,6 +14,7 @@ import (
 
 var commands = []*command{
 	cmdMkBowDb,
+	cmdMkPaired,
 	cmdMkSeqHMM,
 	cmdMkSeqProfile,
 	cmdMkStructure,
