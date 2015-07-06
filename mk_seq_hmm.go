@@ -11,7 +11,7 @@ import (
 
 	"github.com/BurntSushi/ty/fun"
 	"github.com/TuftsBCB/apps/hhsuite"
-	"github.com/TuftsBCB/fragbag"
+	"github.com/ndaniels/esfragbag"
 	"github.com/TuftsBCB/io/msa"
 	"github.com/TuftsBCB/seq"
 	"github.com/TuftsBCB/tools/util"

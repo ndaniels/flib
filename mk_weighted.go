@@ -4,7 +4,7 @@ import (
 	"flag"
 	"math"
 
-	"github.com/TuftsBCB/fragbag"
+	"github.com/ndaniels/esfragbag"
 	"github.com/TuftsBCB/tools/util"
 )
 

@@ -8,7 +8,7 @@ import (
 	path "path/filepath"
 	"strings"
 
-	"github.com/TuftsBCB/fragbag"
+	"github.com/ndaniels/esfragbag"
 	"github.com/TuftsBCB/io/pdb"
 	"github.com/TuftsBCB/structure"
 	"github.com/TuftsBCB/tools/util"

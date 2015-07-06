@@ -4,7 +4,7 @@ import (
 	"flag"
 	"sync"
 
-	"github.com/TuftsBCB/fragbag"
+	"github.com/ndaniels/esfragbag"
 	"github.com/TuftsBCB/io/pdb"
 	"github.com/TuftsBCB/seq"
 	"github.com/TuftsBCB/structure"

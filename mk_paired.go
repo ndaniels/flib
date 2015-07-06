@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/TuftsBCB/fragbag"
+	"github.com/ndaniels/esfragbag"
 	"github.com/TuftsBCB/seq"
 	"github.com/TuftsBCB/structure"
 	"github.com/TuftsBCB/tools/util"

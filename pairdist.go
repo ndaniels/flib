@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/TuftsBCB/fragbag/bow"
+	"github.com/ndaniels/esfragbag/bow"
 	"github.com/TuftsBCB/tools/util"
 )
 

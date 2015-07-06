@@ -8,8 +8,8 @@ import (
 	"sync"
 	"text/tabwriter"
 
-	"github.com/TuftsBCB/fragbag/bow"
-	"github.com/TuftsBCB/fragbag/bowdb"
+	"github.com/ndaniels/esfragbag/bow"
+	"github.com/ndaniels/esfragbag/bowdb"
 	"github.com/TuftsBCB/tools/util"
 )
 

@@ -2,7 +2,7 @@ package main
 
 import (
 	"flag"
-	"github.com/TuftsBCB/fragbag/bowdb"
+	"github.com/ndaniels/esfragbag/bowdb"
 	"github.com/TuftsBCB/tools/util"
 )
 
