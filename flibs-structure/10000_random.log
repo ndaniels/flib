@@ -1,0 +1,18 @@
+26925515: Generating cluster centers
+72684: Computing distances from cluster centers
+8375555: Writing out centers.cluster.db
+27003465: Opening centers library
+21798396: Computing individual cluster dbs
+134350: Serializing gob
+5316419: computing cluster radii
+4fk1A	34.292856	12
+170lA	34.496377	80
+4fkaD	21.047565	96
+3fkyJ	27.313001	23
+2fkzG	44.855323	35
+3fkaA	43.920383	28
+3fksJ	60.564016	34
+3fkuT	48.259714	28
+4fkkA	87.275426	7
+3fkzA	22.068076	19
+642374: Finished!!

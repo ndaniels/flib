@@ -8,7 +8,7 @@ import (
 	"github.com/ndaniels/esfragbag"
 	"github.com/TuftsBCB/seq"
 	"github.com/TuftsBCB/structure"
-	"github.com/TuftsBCB/tools/util"
+	"github.com/ndaniels/tools/util"
 )
 
 var cmdMkPaired = &command{

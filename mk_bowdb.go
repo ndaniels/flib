@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"github.com/ndaniels/esfragbag/bowdb"
-	"github.com/TuftsBCB/tools/util"
+	"github.com/ndaniels/tools/util"
 )
 
 var cmdMkBowDb = &command{

@@ -6,7 +6,7 @@ import (
 	"math"
 
 	"github.com/ndaniels/esfragbag/bow"
-	"github.com/TuftsBCB/tools/util"
+	"github.com/ndaniels/tools/util"
 )
 
 var flagPairdistModels = false
